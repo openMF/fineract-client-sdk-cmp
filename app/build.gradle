@@ -1,0 +1,94 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: "kotlinx-serialization"
+apply plugin: "de.jensklingenberg.ktorfit"
+apply plugin: "org.jetbrains.kotlin.plugin.serialization"
+
+android {
+    namespace 'org.mifos'
+    compileSdk rootProject.ext.compileSdkVersion
+    buildToolsVersion rootProject.ext.buildToolsVersion
+
+    defaultConfig {
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
+        versionCode 1
+        versionName "1.0.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    lintOptions {
+        abortOnError false
+    }
+
+    packagingOptions {
+        exclude 'META-INF/DEPENDENCIES'
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+    kotlinOptions {
+        jvmTarget = '17'
+    }
+
+}
+
+dependencies {
+//    implementation "androidx.multidex:multidex:$rootProject.multidexVersion"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    implementation "androidx.appcompat:appcompat:$rootProject.appCompatVersion"
+    testImplementation "junit:junit:$rootProject.jUnitVersion"
+    androidTestImplementation "androidx.test.ext:junit:$rootProject.androidJUnitVersion"
+    androidTestImplementation "androidx.test.espresso:espresso-core:$rootProject.androidEsspressoVersion"
+
+    // RecyclerView and CardView dependencies
+    implementation "androidx.cardview:cardview:$rootProject.cardviewVersion"
+
+    // rx Java dependencies
+    implementation "io.reactivex:rxandroid:$rootProject.rxAndroidVersion"
+    implementation "io.reactivex:rxjava:$rootProject.rxJavaVersion"
+
+    // Lifecycle dependency
+    implementation "androidx.lifecycle:lifecycle-extensions:$rootProject.lifecycleVersion"
+
+    //Square dependencies
+    implementation("com.squareup.retrofit2:retrofit:$retrofitVersionLatest") {
+        // exclude Retrofit’s OkHttp peer-dependency module and define your own module import
+        exclude module: 'okhttp'
+    }
+    implementation "com.squareup.retrofit2:converter-gson:$retrofitVersionLatest"
+    implementation "com.squareup.retrofit2:converter-scalars:$retrofitVersionLatest"
+    implementation "com.squareup.retrofit2:adapter-rxjava:$retrofitVersionLatest"
+    implementation "com.squareup.okhttp3:okhttp:$okHttp3Version"
+    implementation "com.squareup.okhttp3:logging-interceptor:$okHttp3Version"
+
+    implementation project(':core')
+
+    // fineract dependency
+    implementation ("com.github.openMF:fineract-client-cmp:0.0.1")
+
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.8.0'
+    implementation "androidx.lifecycle:lifecycle-runtime-ktx:2.8.5"
+
+    // Add Ktorfit
+    implementation "de.jensklingenberg.ktorfit:ktorfit-lib:2.1.0"
+
+    // Add Ktor dependencies
+    implementation "io.ktor:ktor-client-core:2.3.12"
+    implementation "io.ktor:ktor-client-cio:2.3.12"
+    implementation "io.ktor:ktor-client-logging:2.3.12"
+    implementation "io.ktor:ktor-client-auth:2.3.12"
+    implementation "io.ktor:ktor-network-tls-certificates:2.3.12"
+    implementation "io.ktor:ktor-client-content-negotiation:2.3.12"
+    implementation "io.ktor:ktor-serialization-kotlinx-json:2.3.12"
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.7.1")
+}

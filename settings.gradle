@@ -1,0 +1,3 @@
+rootProject.name='Fineract-sdk-cmp'
+include ':app'
+include ':core'
