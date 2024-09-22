@@ -43,7 +43,7 @@ ext {
     jUnitVersion = '4.13.2'
 
     // androidJunit
-    androidJUnitVersion = '1.1.5'
+    androidJUnitVersion = '1.2.1'
 
     // android espresso
     androidEsspressoVersion = '3.5.1'
