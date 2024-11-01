@@ -77,7 +77,7 @@ dependencies {
     implementation ("com.github.openMF:fineract-client-cmp:0.0.1")
 
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.8.0'
-    implementation "androidx.lifecycle:lifecycle-runtime-ktx:2.8.5"
+    implementation "androidx.lifecycle:lifecycle-runtime-ktx:2.8.7"
 
     // Add Ktorfit
     implementation "de.jensklingenberg.ktorfit:ktorfit-lib:2.1.0"
